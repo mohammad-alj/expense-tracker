@@ -1,22 +1,28 @@
-const ExpenseList = () => {
+import {Expense} from '../App';
+
+const ExpenseList = ({expenses = []}: {expenses?: Expense[]}) => {
 	return (
-		<table className='table table-bordered'>
-			<thead>
-				<tr>
-					<th>Description</th>
-					<th>Amount</th>
-					<th>Category</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>milk</td>
-					<td>10$</td>
-					<td>Grocories</td>
-				</tr>
-			</tbody>
-		</table>
+		expenses.length > 0 && (
+			<table className='table table-bordered'>
+				<thead>
+					<tr>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Category</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{expenses.map(e => (
+						<tr key={e.id}>
+							<td>{e.description}</td>
+							<td>{e.amount}</td>
+							<td>{e.category}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		)
 	);
 };
 
