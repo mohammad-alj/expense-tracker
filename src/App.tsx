@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import ExpenseList from './components/ExpenseList';
 
 export interface Expense {
@@ -8,20 +9,18 @@ export interface Expense {
 }
 
 const App = () => {
-	const expenses: Expense[] = [];
-	function addExpense(
-		description: string,
-		amount: number,
-		category: 'Grocories' | 'Utilities' | 'Entertainment',
-	) {
-		expenses.push({description, amount, category, id: expenses.length});
-	}
+	const [expenses, setExpenses] = useState<Expense[]>([
+		{description: 'milk', amount: 10, category: 'Grocories', id: 0},
+		{description: 'ps4', amount: 399, category: 'Entertainment', id: 1},
+		{description: 'cheese', amount: 10, category: 'Grocories', id: 3},
+	]);
 
-	addExpense('Milk', 10, 'Grocories');
-	addExpense('Milk', 10, 'Grocories');
 	return (
 		<div>
-			<ExpenseList expenses={expenses} />
+			<ExpenseList
+				expenses={expenses}
+				onDelete={id => setExpenses(expenses.filter(e => e.id !== id))}
+			/>
 		</div>
 	);
 };
