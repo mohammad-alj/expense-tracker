@@ -16,14 +16,25 @@ const App = () => {
 		{description: 'cheese', amount: 10, category: 'Grocories', id: 3},
 	]);
 
+	const [expenseFilter, setExpenseFilter] = useState<
+		'Grocories' | 'Utilities' | 'Entertainment' | 'All'
+	>('All');
+
 	return (
 		<div>
 			<div className='my-3'>
-				<ExpenseFilter onSelect={filter => console.log(filter)} />
+				<ExpenseFilter
+					onSelect={filter =>
+						setExpenseFilter(
+							filter as 'Grocories' | 'Utilities' | 'Entertainment' | 'All',
+						)
+					}
+				/>
 			</div>
 			<ExpenseList
 				expenses={expenses}
 				onDelete={id => setExpenses(expenses.filter(e => e.id !== id))}
+				filter={expenseFilter}
 			/>
 		</div>
 	);

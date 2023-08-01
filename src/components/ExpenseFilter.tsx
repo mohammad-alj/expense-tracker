@@ -1,4 +1,8 @@
-const ExpenseFilter = ({onSelect}: {onSelect: (category: string) => void}) => {
+const ExpenseFilter = ({
+	onSelect,
+}: {
+	onSelect: (category: 'Grocories' | 'Utilities' | 'Entertainment' | 'All' | string) => void;
+}) => {
 	return (
 		<select
 			className='form-select'
