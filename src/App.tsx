@@ -24,7 +24,7 @@ const App = () => {
 	return (
 		<div>
 			<div className='mb-5'>
-				<ExpenseForm />
+				<ExpenseForm onSubmit={data => console.log(data)} />
 			</div>
 			<div className='my-3'>
 				<ExpenseFilter
