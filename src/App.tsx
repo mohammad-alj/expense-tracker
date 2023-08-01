@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import ExpenseList from './components/ExpenseList';
 import ExpenseFilter from './components/ExpenseFilter';
+import ExpenseForm from './components/ExpenseForm';
 
 export interface Expense {
 	id: number;
@@ -22,6 +23,9 @@ const App = () => {
 
 	return (
 		<div>
+			<div className='mb-5'>
+				<ExpenseForm />
+			</div>
 			<div className='my-3'>
 				<ExpenseFilter
 					onSelect={filter =>
