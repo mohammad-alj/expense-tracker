@@ -10,7 +10,7 @@ const ExpenseFilter = ({
 			onChange={event => onSelect(event.target.value)}
 		>
 			<option selected value='All'>
-				Select category
+				Select filter
 			</option>
 			<option value='Grocories'>Grocories</option>
 			<option value='Utilities'>Utilities</option>

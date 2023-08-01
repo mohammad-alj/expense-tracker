@@ -14,7 +14,7 @@ const App = () => {
 	const [expenses, setExpenses] = useState<Expense[]>([
 		{description: 'milk', amount: 10, category: 'Grocories', id: 0},
 		{description: 'ps4', amount: 399, category: 'Entertainment', id: 1},
-		{description: 'cheese', amount: 10, category: 'Grocories', id: 3},
+		{description: 'cheese', amount: 10, category: 'Grocories', id: 2},
 	]);
 
 	const [expenseFilter, setExpenseFilter] = useState<
@@ -24,7 +24,11 @@ const App = () => {
 	return (
 		<div>
 			<div className='mb-5'>
-				<ExpenseForm onSubmit={data => console.log(data)} />
+				<ExpenseForm
+					onSubmit={data =>
+						setExpenses([...expenses, {...(data as Expense), id: expenses.length + 1}])
+					}
+				/>
 			</div>
 			<div className='my-3'>
 				<ExpenseFilter
