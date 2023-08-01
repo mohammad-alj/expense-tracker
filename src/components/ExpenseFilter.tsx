@@ -1,7 +1,11 @@
-const ExpenseFilter = () => {
+const ExpenseFilter = ({onSelect}: {onSelect: (category: string) => void}) => {
 	return (
-		<select className='form-select' aria-label='Default select example'>
-			<option selected value=''>
+		<select
+			className='form-select'
+			aria-label='Default select example'
+			onChange={event => onSelect(event.target.value)}
+		>
+			<option selected value='All'>
 				Select category
 			</option>
 			<option value='Grocories'>Grocories</option>

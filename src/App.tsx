@@ -19,7 +19,7 @@ const App = () => {
 	return (
 		<div>
 			<div className='my-3'>
-				<ExpenseFilter />
+				<ExpenseFilter onSelect={filter => console.log(filter)} />
 			</div>
 			<ExpenseList
 				expenses={expenses}
