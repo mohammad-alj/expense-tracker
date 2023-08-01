@@ -1,5 +1,11 @@
+import ExpenseList from './components/ExpenseList';
+
 const App = () => {
-	return <div>App</div>;
+	return (
+		<div>
+			<ExpenseList />
+		</div>
+	);
 };
 
 export default App;
