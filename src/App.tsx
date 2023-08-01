@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import ExpenseList from './components/ExpenseList';
+import ExpenseFilter from './components/ExpenseFilter';
 
 export interface Expense {
 	id: number;
@@ -17,6 +18,9 @@ const App = () => {
 
 	return (
 		<div>
+			<div className='my-3'>
+				<ExpenseFilter />
+			</div>
 			<ExpenseList
 				expenses={expenses}
 				onDelete={id => setExpenses(expenses.filter(e => e.id !== id))}
