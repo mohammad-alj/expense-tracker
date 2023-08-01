@@ -7,40 +7,21 @@ interface Props {
 }
 
 const ExpenseList = ({expenses, onDelete, filter}: Props) => {
-	const shownExpenses =
-		filter === 'All'
-			? expenses.map(e => (
-					<tr key={e.id}>
-						<td>{e.description}</td>
-						<td>{e.amount}</td>
-						<td>{e.category}</td>
-						<td>
-							<button
-								className='btn btn-outline-danger'
-								onClick={() => onDelete(e.id)}
-							>
-								Remove
-							</button>
-						</td>
-					</tr>
-			  ))
-			: expenses
-					.filter(e => e.category === filter)
-					.map(e => (
-						<tr key={e.id}>
-							<td>{e.description}</td>
-							<td>{e.amount}</td>
-							<td>{e.category}</td>
-							<td>
-								<button
-									className='btn btn-outline-danger'
-									onClick={() => onDelete(e.id)}
-								>
-									Remove
-								</button>
-							</td>
-						</tr>
-					));
+	const filteredExpenes =
+		filter === 'All' ? expenses : expenses.filter(e => e.category === filter);
+
+	const shownExpenses = filteredExpenes.map(e => (
+		<tr key={e.id}>
+			<td>{e.description}</td>
+			<td>${e.amount}</td>
+			<td>{e.category}</td>
+			<td>
+				<button className='btn btn-outline-danger' onClick={() => onDelete(e.id)}>
+					Remove
+				</button>
+			</td>
+		</tr>
+	));
 
 	return (
 		expenses.length > 0 && (
@@ -54,6 +35,12 @@ const ExpenseList = ({expenses, onDelete, filter}: Props) => {
 					</tr>
 				</thead>
 				<tbody>{shownExpenses}</tbody>
+				<tfoot>
+					<tr>
+						<td>Total</td>
+						<td>${filteredExpenes.reduce((a, expense) => expense.amount + a, 0)}</td>
+					</tr>
+				</tfoot>
 			</table>
 		)
 	);
